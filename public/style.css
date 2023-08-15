@@ -1,0 +1,132 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;}
+:root{
+    --primary-blue:#047BD5;
+    --primary-yellow:#F8E831;
+}
+
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-blue);
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    padding: 0.5rem 5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+
+}
+
+
+.nav-brand a{
+    display: flex;
+    align-items:center;
+    justify-content: space-evenly;
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    gap: 2px;
+    font-style:italic;
+}
+
+.nav-brand img{
+    width: 3rem;
+}
+
+.search-bar{
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input{
+    width: 380px;
+    padding: 6px 8px;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
+    border: 0;
+}
+
+input:focus{
+    outline: 0;
+}
+
+.search-bar button{
+    background-color: #fff;
+    border: 0;
+    padding: 4px 8px;
+    border-radius: 0 12px 12px 0;
+    font-size: 16px;
+}
+
+.search-bar button:hover{
+    background-color: var(--primary-blue);
+    transition: 0.2s all ease-in-out;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+
+.nav-options{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+
+}
+.nav-options a{
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-options div{
+    position: relative;
+    display: inline-block;
+}
+
+.nav-options span{
+    position: absolute;
+    font-size: 10px;
+    background-color: gray;
+    color: #fff;
+    display: none;
+    bottom: -16px;
+    left: 50%;
+    font-weight: 400;
+
+    transform: translateX(-10%);
+
+    padding: 2px 3px;
+    border: 1px solid #000;
+}
+
+.nav-options div:hover span {
+    display: block;
+}
+
+.cart{
+    position: relative;
+}
+
+.cart-count{
+    background-color: red;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    position: absolute;
+    border-radius: 50%;
+    padding: 2px 4px;
+    top: -3px;
+    right: -8px;
+
+}
+
+
+
