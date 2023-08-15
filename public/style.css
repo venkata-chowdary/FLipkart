@@ -6,6 +6,7 @@
 :root{
     --primary-blue:#047BD5;
     --primary-yellow:#F8E831;
+    --secondary-blue:#4FA2E1;
 }
 
 
@@ -16,6 +17,7 @@
     align-items: center;
     background-color: var(--primary-blue);
     position: fixed;
+    top: 0;
     width: 100%;
     z-index: 999;
     padding: 0.5rem 5rem;
@@ -80,7 +82,7 @@ input:focus{
 
 }
 .nav-options a{
-    font-size: 28px;
+    font-size: 26px;
     color: #fff;
     cursor: pointer;
     text-decoration: none;
@@ -118,7 +120,7 @@ input:focus{
 .cart-count{
     background-color: red;
     color: #fff;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 500;
     position: absolute;
     border-radius: 50%;
@@ -128,5 +130,66 @@ input:focus{
 
 }
 
+/* side navbar */
+
+.side-navbar{
+    margin-top: 50px;
+    width: fit-content;
+    position: fixed;
+    height: 93vh;
+    background-color: var(--primary-blue);
+    padding: 12px 14px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.categories{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.side-navbar div a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+
+}
+
+.other-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.side-navbar a:hover{
+    background-color: var(--secondary-blue);
+    border-radius: 10px;
+    transition: 0.1s all ease-in-out;
+}
 
 
+/**hero container**/
+
+.hero-container{
+    margin-left: 220px;
+    padding: 100px 40px 40px;
+}
+
+.hello-user h2{
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.hello-user span{
+    color: var(--primary-blue);
+}
