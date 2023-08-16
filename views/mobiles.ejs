@@ -1,0 +1,56 @@
+<%- include('header') %>
+<h2 class="product-section-title">Smart Phones</h2>
+<div class="products">
+
+    <!-- <div class="product">
+        <a href="/product/product-id">
+            <div class="product-image">
+                <img src="https://m.media-amazon.com/images/I/71J8tz0UeJL._SX679_.jpg">
+            </div>
+            <div class="product-details">
+                <h3>Product Name</h3>
+                <h4>Samsung</h4>
+                <p>4.5
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                <p>
+                <div>
+                    <h5 class="org-price">$299</h5>   
+                    <h5 class="offer-price">$300</h5>   
+                </div>
+            </div>
+        </a>
+    </div> -->
+    <% mobilesData.forEach((mobile) => { %>
+        <div class="product">
+            <a href="/product/<%= mobile.productId %>">
+                <div class="product-image">
+                    <img src="<%= mobile.productImageUrl %>">
+                </div>
+                <div class="product-details">
+                    <h3><%= mobile.productName %></h3>
+                    <h4><%= mobile.productCompany %></h4>
+                    <p>
+                        <% for (let i = 0; i < mobile.productRating; i++) { %>
+                            <i class="fa-solid fa-star"></i>
+                        <% } %>
+                    </p>
+                    <div>
+                        <h5 class="org-price">₹<%= mobile.productPrice %></h5>
+                        <h5 class="offer-price">₹<%= Math.ceil(mobile.productPrice/1000)*1000 %></h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        
+    <% }) %>
+    <div class="dummy-pro"></div>
+    <div class="dummy-pro"></div>
+</div>
+
+
+
+<%- include('footer') %>
