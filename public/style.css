@@ -13,6 +13,9 @@
     --font-grey:rgb(107 114 128);
 }
 
+html{
+    overflow-y: scroll;
+}
 
 .navbar{
     display: flex;
@@ -124,13 +127,17 @@ input:focus{
 .cart-count{
     background-color: red;
     color: #fff;
-    font-size: 9px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 600;
     position: absolute;
     border-radius: 50%;
-    padding: 2px 4px;
+    width: 20px;
+    height: 20px;
     top: -3px;
     right: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 

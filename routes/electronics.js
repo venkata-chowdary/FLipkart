@@ -5,7 +5,9 @@ const isAuthenticated = require('../middleware/authMiddleware'); // Example midd
 
 
 route.get('/',isAuthenticated,(req,res)=>{
-    res.render('electronics')
+    res.render('electronics',{
+        showSideNav:true
+    })
 })
 
 

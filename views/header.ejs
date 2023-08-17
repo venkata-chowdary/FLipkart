@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/ind-product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +20,7 @@
         <div class="nav-brand">
             <a href="/">
                 <span>Flipkart</span>
-                <img src="logo.png">
+                <img src="/logo.png">
             </a>
         </div>
         <form class="search-bar" method="post" accept="/">
@@ -43,81 +44,90 @@
             </div>
             <div class="cart">
                 <a href="/profile"><i class="fa-solid fa-cart-shopping"></i></a>
-                <p class="cart-count">20</p>
+                <p class="cart-count"><%= cartCount  %></p>
                 <span>
                     Cart
                 </span>
             </div>            
         </div>
     </div>
-    <div class="side-navbar">
-        <div class="categories">
-            <a href="/popular">
-                <i class="fa-solid fa-bolt"></i>
-                <span>
-                    Popular Products
-                </span>
-            </a>
-            <a href="/groceries">
-                <i class="fa-solid fa-bowl-food"></i>                
-                <span>
-                    Grocery
-                </span>
-            </a>
-            <a href="/clothing">
-                <i class="fa-solid fa-shirt"></i>
-                <span>
-                    Clothing and Shoes
-                </span>
-            </a>
-            <a href="/electronics">
-                <i class="fa-solid fa-laptop"></i>
-                <span>
-                    Electronics
-                </span>
-            </a>
-            <a href="/furnture">
-                <i class="fa-solid fa-couch"></i>
-                <span>
-                    Home and Furniture
-                </span>
-            </a>
-            <a href="/mobiles">
-                <i class="fa-solid fa-mobile"></i>
-                <span>
-                    Mobiles
-                </span>
-            </a>
+    <% if (showSideNav) { %>
+        <div class="side-navbar">
+            <div class="categories">
+                <a href="/popular">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>
+                        Popular Products
+                    </span>
+                </a>
+                <a href="/groceries">
+                    <i class="fa-solid fa-bowl-food"></i>                
+                    <span>
+                        Grocery
+                    </span>
+                </a>
+                <a href="/clothing">
+                    <i class="fa-solid fa-shirt"></i>
+                    <span>
+                        Clothing and Shoes
+                    </span>
+                </a>
+                <a href="/electronics">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>
+                        Electronics
+                    </span>
+                </a>
+                <a href="/furnture">
+                    <i class="fa-solid fa-couch"></i>
+                    <span>
+                        Home and Furniture
+                    </span>
+                </a>
+                <a href="/mobiles">
+                    <i class="fa-solid fa-mobile"></i>
+                    <span>
+                        Mobiles
+                    </span>
+                </a>
+            </div>
+            <div class="other-options">
+                <a href="/orders">
+                    <i class="fa-solid fa-box"></i>
+                    <span>
+                        Orders
+                    </span>
+                </a>
+                <a href="/wishlist">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>
+                        Wishlist
+                    </span>
+                </a>
+                <a href="/coupons">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span>
+                        Coupons
+                    </span>
+                </a>
+            </div>
+            <div>
+                <a href="/logout">
+                    <i class="fa-solid fa-power-off"></i>
+                    <span>
+                        Logout
+                    </span>
+                </a>
+            </div>
         </div>
-        <div class="other-options">
-            <a href="/orders">
-                <i class="fa-solid fa-box"></i>
-                <span>
-                    Orders
-                </span>
-            </a>
-            <a href="/wishlist">
-                <i class="fa-solid fa-heart"></i>
-                <span>
-                    Wishlist
-                </span>
-            </a>
-            <a href="/coupons">
-                <i class="fa-solid fa-ticket"></i>
-                <span>
-                    Coupons
-                </span>
-            </a>
-        </div>
-        <div>
-            <a href="/logout">
-                <i class="fa-solid fa-power-off"></i>
-                <span>
-                    Logout
-                </span>
-            </a>
-        </div>
-    </div>
+    <% } %>
+   
+    
+    
+    
+    
+    
+    
     
     <!-- hero container -->
     <div class="hero-container">

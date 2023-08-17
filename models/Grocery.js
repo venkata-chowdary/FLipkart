@@ -1,18 +1,17 @@
 const mongoose=require("mongoose")
 
-const mobileSchema=new mongoose.Schema({
+const grocerySchema=new mongoose.Schema({
     productId:String,
     productName:String,
     productCompany:String,
     productRating:Number,
     productPrice:Number,
-    productStock:Number,
     productCategory:String,
     productDescription:String,
     productImageUrl:String,
     wishlisted:Boolean
 })
-const Product=new mongoose.model('Product',mobileSchema);
+const Grocery=new mongoose.model('Grocery',grocerySchema);
 
 
-module.exports=Product;
+module.exports=Grocery;

@@ -25,7 +25,7 @@
     </div> -->
     <% mobilesData.forEach((mobile) => { %>
         <div class="product">
-            <a href="/product/<%= mobile.productId %>">
+            <a href="/mobiles/<%= mobile.productId %>">
                 <div class="product-image">
                     <img src="<%= mobile.productImageUrl %>">
                 </div>
@@ -37,6 +37,7 @@
                             <i class="fa-solid fa-star"></i>
                         <% } %>
                     </p>
+                    <p><%= mobile.productStock  %></p>
                     <div>
                         <h5 class="org-price">₹<%= mobile.productPrice %></h5>
                         <h5 class="offer-price">₹<%= Math.ceil(mobile.productPrice/1000)*1000 %></h5>

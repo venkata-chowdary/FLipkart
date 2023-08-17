@@ -1,0 +1,27 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;}
+:root{
+    --primary-blue:#047BD5;
+    --primary-yellow:#F8E831;
+    --secondary-blue:#4FA2E1;
+    --primary-orange:#F7A200;
+    --font-black: rgb(17 24 39);
+    --font-green:rgb(21 128 61);
+    --font-grey:rgb(107 114 128);
+}
+
+html{
+    overflow-y: scroll;
+}
+
+
+.indProduct{
+    display: flex;
+}
+
+.indProduct img{
+    width: 500px;
+}

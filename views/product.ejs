@@ -1,0 +1,24 @@
+<%- include('header') %>
+<% product.forEach((i)=>{ %>
+    <div class="indProduct">
+        <div class="productImage">
+            <img src="<%= i.productImageUrl %>">
+        </div>
+        <div>
+            <div class="productDetails">
+                <h1><%= i.productName %></h1>
+                <h3><%= i.productCompany  %></h3>
+                <h4><%= i.productRating  %></h4>
+                <h2><%= i.productPrice  %></h2>
+                <p><%= i.productDescription %></p>
+            </div>
+            <div class="add-to-cart">
+                <a href="/add-to-cart/<%= i.productCategory  %>/<%= i.productId %>">Add To Cart</a>
+            </div>
+        </div>
+        
+    </div>
+
+<%  }) %>
+
+<%- include('footer') %>
