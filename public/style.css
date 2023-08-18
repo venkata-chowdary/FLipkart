@@ -138,7 +138,6 @@ input:focus{
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 /* side navbar */
@@ -194,6 +193,7 @@ input:focus{
 .hero-container{
     margin-left: 220px;
     padding: 100px 60px 40px;
+    position: relative;
 }
 
 .hello-user h2{
@@ -294,5 +294,16 @@ input:focus{
     display: flex;
     gap: 18px;
     align-items: baseline;
+}
 
+.home-btn{
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-size: 18px;
+    font-weight: 500;
+    left: -20px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }

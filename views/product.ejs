@@ -1,15 +1,26 @@
 <%- include('header') %>
+<a href="/" class="home-btn"><i class="fa-solid fa-angles-left"></i>Back</a>
 <% product.forEach((i)=>{ %>
     <div class="indProduct">
         <div class="productImage">
             <img src="<%= i.productImageUrl %>">
         </div>
-        <div>
+        <div class="productInfo">
             <div class="productDetails">
                 <h1><%= i.productName %></h1>
                 <h3><%= i.productCompany  %></h3>
-                <h4><%= i.productRating  %></h4>
-                <h2><%= i.productPrice  %></h2>
+                <div class="productRating">
+                    <h4><%= i.productRating  %></h4>
+                    <h5>
+                        <% for (let j = 0; j < Math.floor(i.productRating); j++) { %>
+                            <i class="fa-solid fa-star"></i>
+                        <% } %>
+                        </h5>
+                </div>
+                <div class="productPrice">
+                    <h2 class="org-price">₹<%= i.productPrice %></h2>
+                    <h2 class="offer-price">₹<%= Math.ceil(i.productPrice/1000)*1000 %></h2>
+                </div>                
                 <p><%= i.productDescription %></p>
             </div>
             <div class="add-to-cart">

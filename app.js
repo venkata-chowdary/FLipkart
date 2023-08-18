@@ -73,18 +73,20 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 
-
 app.get('/',(req,res)=>{
+    let count=0;
     if (req.isAuthenticated()){
         User.findOne({email:req.user.email})
         .then((data)=>{
-            console.log(data.__v)
+            console.log(data.cart)
+            for(let i=0;i<data.cart.length;i++){
+                count+=data.cart[i].quantity
+            }
             res.render('home',{
                 showSideNav:true,
-                cartCount:data.__v            
+                cartCount:count          
             })
         })
-        
     }
     else{
         res.redirect('/login')
