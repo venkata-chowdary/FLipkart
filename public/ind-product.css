@@ -7,15 +7,16 @@
     --primary-blue:#047BD5;
     --primary-yellow:#F8E831;
     --secondary-blue:#4FA2E1;
-    --tertiary-blue:#0489ee;
     --primary-orange:#F7A200;
     --font-black: rgb(17 24 39);
     --font-green:rgb(21 128 61);
     --font-grey:rgb(107 114 128);
+    --background-grey:#f1f3f6;
+    --tertiary-blue:#3695DD;
 }
 
 html{
-    overflow-y:auto;
+    overflow-y: scroll;
 }
 
 .indProduct{

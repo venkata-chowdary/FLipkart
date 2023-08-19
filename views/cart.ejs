@@ -1,0 +1,43 @@
+<%- include('header')  %>
+<div class="cart">
+    <div class="cart-items">
+        <% cartData.forEach((item,i)=>{ %>
+                <div class="cart-item">
+                    <a href="/mobiles/<%= item.productId %>">
+                        <div class="cart-item-image">
+                            <img src="<%= item.productImageUrl %>">
+                        </div>
+                    </a>
+
+                    <div class="cart-product-details">
+                        <h2><%= item.productName  %></h2>
+                        <div class="cartPrice">
+                            <h5 class="orgPrice">₹<%= item.productPrice %></h5>
+                            <h5 class="offerPrice">₹<%= Math.ceil(item.productPrice/1000)*1000 %></h5>
+                        </div>
+                        <div class="qunatity-buttons">
+                            <button>-</button>
+                            <p><%=quantityData[i]%></p>
+                            <button>+</button>
+                        </div>
+                    </div>
+                </div>
+            
+        <% }) %>
+        
+    </div>
+    <div class="checkout">
+        <div class="cart-data">
+            <p>Total Items : 
+                <span> <%= totalItems  %></span>
+            </p>
+            <p>Total Amount:
+                <span>₹ <%= totalCost  %></span>
+            </p>
+        </div>
+        <a href="/orderplaced" class="place-order-btn">Place Order</a>
+    </div>
+</div>
+
+
+<%- include('footer')  %>

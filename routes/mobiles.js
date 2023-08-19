@@ -13,8 +13,7 @@ route.get('/',isAuthenticated,(req,res)=>{
             mobilesData:data,
             showSideNav:true,
             cartCount:count
-        })
-        
+        }) 
     })
     .catch((err)=>{
         console.log(err)

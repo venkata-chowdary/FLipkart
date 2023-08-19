@@ -1,0 +1,136 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;}
+:root{
+    --primary-blue:#047BD5;
+    --primary-yellow:#F8E831;
+    --secondary-blue:#4FA2E1;
+    --primary-orange:#F7A200;
+    --font-black: rgb(17 24 39);
+    --font-green:rgb(21 128 61);
+    --font-grey:rgb(107 114 128);
+    --background-grey:#f1f3f6;
+    --border-grey:#c2c2c2;
+}
+
+html{
+    overflow-y: scroll;
+}
+
+.cart{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.cart-items{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-items a{
+    text-decoration: none;
+    color: var(--font-black);
+}
+
+.cart-item{
+    border: 1px solid var(--background-grey);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 500px;
+    max-width: 600px;
+}
+
+.cart-item-image{
+    width: 178px;
+    height: 194px;
+}
+
+.cart-item-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cart-product-details{
+    padding: 36px 0;
+}
+
+.cart-product-details h2{
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--font-black);
+}
+
+
+.cartPrice{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+}
+
+.orgPrice{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.offerPrice{
+    font-size: 16px;
+    font-size: 400;
+    color: var(--font-grey);
+    text-decoration: line-through;
+}
+
+.qunatity-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+}
+
+.qunatity-buttons button{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 50%;
+    border: 1px solid var(--border-grey);
+    background-color: #fff;
+}
+
+.checkout{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px;
+    border: 1px solid var(--background-grey);
+
+    position: sticky;
+    top: 80px;
+}
+
+.place-order-btn{
+    text-decoration: none;
+    background-color: var(--primary-orange);
+    color: #fff;
+    padding: 14px 44px;
+}
+
+.cart-data{
+    width: 100%;
+}
+
+.cart-data p{
+    font-weight:400;
+}
+
+.cart-data p span{
+    font-weight: 600;
+}

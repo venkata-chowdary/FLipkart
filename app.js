@@ -19,7 +19,6 @@ const Mobile = require('./models/Mobile');
 const Grocery = require('./models/Grocery');
 const Product = require('./models/Mobile')
 
-
 const app=express()
 
 
@@ -43,10 +42,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/flipkartDB',{
     useNewUrlParser:true
 })
 
-// const cartItemSchema = new mongoose.Schema({
-//     productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-//     quantity: { type: Number, default: 1 }
-// });
 
 const cartItemSchema = new mongoose.Schema({
     productId: String,
@@ -73,24 +68,13 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 
-app.get('/',(req,res)=>{
-    let count=0;
-    if (req.isAuthenticated()){
-        User.findOne({email:req.user.email})
-        .then((data)=>{
-            console.log(data.cart)
-            for(let i=0;i<data.cart.length;i++){
-                count+=data.cart[i].quantity
-            }
-            res.render('home',{
-                showSideNav:true,
-                cartCount:count          
-            })
-        })
-    }
-    else{
-        res.redirect('/login')
-    }
+app.get('/',isAuthenticated,(req,res)=>{
+    let count=req.cartCount
+
+    res.render('home',{
+        showSideNav:true,
+        cartCount:count          
+    })
 })
 
 app.get('/register',function(req,res){
@@ -149,13 +133,14 @@ app.use('/mobiles',mobilesRoute)
 
 app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) => {
     const productId = req.params.productId;
-    console.log(req.user)
     Product.findOne({productId:productId})
     .then((product)=>{
         if(!product){
             res.status(404).send("Product nit found!")
         }
-        User.findOne({email:req.user.email})
+        console.log("email details:", req)
+
+        User.findOne({username:req.user.username})
         .then((user)=>{
             if(!user){
                 console.log("User not found")
@@ -164,6 +149,7 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
             const existingCartItem = user.cart.find(function (item) {
                 return item.productId === productId;
             })
+
             if(existingCartItem){
                 existingCartItem.quantity++
             }
@@ -174,7 +160,7 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
             user.save()
             .then(()=>{
                 console.log("Item added to cart")
-                res.send("Item added to cart") //render cart
+                res.redirect('/') //render cart
             })
             .catch((err)=>{
                 console.log("error occured while adding item to cart")
@@ -200,6 +186,47 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
         console.log(err)
         res.status(404).send("product not found!")
     })
+})
+
+app.get('/cart',isAuthenticated,(req,res)=>{
+    User.findOne({username:req.user.username})
+    .then((data)=>{
+        console.log("IVN",data.cart)
+        const productIdsInCart = data.cart.map(item => item.productId);
+        const quantity=data.cart.map(product=>product.quantity)
+        Mobile.find({productId: {$in: productIdsInCart}})
+        .then((productData)=>{
+            console.log("ivn",productData)
+            // const productsPrice=productData.productPrice.map(item=>item.productPrice)
+            // let total=0
+            // productData.forEach((price)=>{
+            //     total+=price
+            // })
+            let total=0
+            productData.forEach((item)=>{
+                data.cart.forEach((id)=>{
+                    if (id.productId===item.productId){
+                        total+=item.productPrice*id.quantity
+
+                    }
+                })
+            })
+        
+            res.render('cart',{
+                cartData:productData,
+                showSideNav:true,
+                cartCount:req.cartCount,
+                quantityData:quantity,
+                totalItems:data.cart.length,
+                totalCost:total
+            })
+        })
+        
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+    
 })
 
 app.listen(3000,()=>{

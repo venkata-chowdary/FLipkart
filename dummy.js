@@ -195,3 +195,47 @@ const smartphoneDataInINR = [
       console.error('Error inserting smartphone data:', err);
     });
   
+
+    Product.findOne({ productId:productId })
+    .then((product) => {
+        if (!product) {
+            res.status(404).send("Product not found!");
+        }
+        product.productStock-=1
+        product.save()
+        .catch((err)=>{
+            console.log(err)
+        })
+        User.findOne({ email: req.user.email })
+            .then((user) => {
+                if (!user) {
+                    res.status(404).send("User not found!");
+                }
+                
+                const existingCartItem = user.cart.find(function (item) {
+                    return item.productId === productId;
+                })
+
+                if (existingCartItem) {
+                    existingCartItem.quantity+=1;
+                } else {
+                    user.cart.push({ productId, quantity: 1 })
+                }
+
+                user.save()
+                .then((saveErr) => {
+                    res.send('Item added to cart.')
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+            })
+            .catch((err) => {
+                console.error(err)
+                res.status(404).send("An error occurred while fetching user.")
+            });
+    })
+    .catch((err) => {
+        console.error(err)
+        res.status(404).send("An error occurred while fetching product.")
+    })
