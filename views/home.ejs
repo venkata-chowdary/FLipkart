@@ -14,3 +14,21 @@
 
 
 <%- include('footer') %>
+<%- include('lastfooter')  %>
+
+
+<!-- Product.findOne({ productId:productId })
+        .then(product => {
+            if (!product) {
+                return res.send('Product not found');
+            }
+            const quantityDifference = newQuantity - product.productStock;
+
+            if (quantityDifference > 0 && quantityDifference <= product.productStock) {
+                product.productStock -= quantityDifference;
+                product.save();
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        }) -->

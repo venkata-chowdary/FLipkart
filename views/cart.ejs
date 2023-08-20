@@ -16,9 +16,9 @@
                             <h5 class="offerPrice">₹<%= Math.ceil(item.productPrice/1000)*1000 %></h5>
                         </div>
                         <div class="qunatity-buttons">
-                            <button>-</button>
-                            <p><%=quantityData[i]%></p>
-                            <button>+</button>
+                            <button class="decrease-btn" data-index="<%= i %>" data-product-id="<%= item.productId %>">-</button>
+                            <p class="quantity-display"><%= quantityData[i] %></p>
+                            <button class="increase-btn" data-index="<%= i %>" data-product-id="<%= item.productId %>">+</button>
                         </div>
                     </div>
                 </div>
@@ -39,5 +39,64 @@
     </div>
 </div>
 
-
 <%- include('footer')  %>
+<script>
+    document.addEventListener('DOMContentLoaded', () =>{
+        const decreaseBtns=document.querySelectorAll('.decrease-btn')
+        const increaseBtns=document.querySelectorAll('.increase-btn')
+        const quantityDisplays=document.querySelectorAll('.quantity-display')
+
+        decreaseBtns.forEach((decreaseBtn)=>{
+            decreaseBtn.addEventListener("click",()=>{
+                const index=decreaseBtn.getAttribute('data-index')
+                const productId=decreaseBtn.getAttribute('data-product-id')
+                const quantityDisplay=quantityDisplays[index]
+
+                let quantity=parseInt(quantityDisplay.innerText)
+                if(quantity>1){
+                    quantity--
+                    quantityDisplay.innerText=quantity
+                    updateCartItemQuantity(productId,quantity)
+                    console.log('values passed to the function')
+
+                }
+            })
+        })
+
+        increaseBtns.forEach((increaseBtn)=>{
+            increaseBtn.addEventListener('click',()=>{
+                const index=increaseBtn.getAttribute('data-index')
+                const productId=increaseBtn.getAttribute('data-product-id')
+
+                const quantityDisplay=quantityDisplays[index]
+
+                let quantity=parseInt(quantityDisplay.innerText)
+                quantity++
+                quantityDisplay.innerText=quantity
+                updateCartItemQuantity(productId,quantity)
+                console.log('values passed to the function')
+
+            })
+        })
+
+        function updateCartItemQuantity(productId, quantity) {
+            fetch(`/update-item-quantity/${productId}/${quantity}`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json()) 
+            .then(data => {
+                console.log("jsonified data")
+            })
+            .catch(error => {
+                console.log(error); 
+            });
+        }
+        
+    })
+</script>
+
+<%- include('lastfooter')  %>
+

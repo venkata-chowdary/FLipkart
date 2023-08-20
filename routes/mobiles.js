@@ -3,11 +3,11 @@ const route=express.Router()
 
 const isAuthenticated = require('../middleware/authMiddleware');
 
-const Mobile = require('../models/Mobile'); 
+const Product = require('../models/Product'); 
 
 route.get('/',isAuthenticated,(req,res)=>{
     let count=req.cartCount
-    Mobile.find({productCategory:"Mobile"})
+    Product.find({productCategory:"Mobile"})
     .then((data)=>{
         res.render('mobiles',{
             mobilesData:data,
@@ -21,7 +21,7 @@ route.get('/',isAuthenticated,(req,res)=>{
 })
 
 route.get('/:productId',isAuthenticated,(req,res)=>{
-    Mobile.find({productId:req.params.productId,productCategory:"Mobile"})
+    Product.find({productId:req.params.productId,productCategory:"Mobile"})
     .then((data)=>{
         res.render('product',{
             showSideNav:false,

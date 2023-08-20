@@ -8,19 +8,14 @@ const passportLocalMongoose=require('passport-local-mongoose')
 const encrypt=require('mongoose-encryption')
 
 //routes
-const groceriesRoute=require("./routes/groceries")
-const electronicsRoute=require('./routes/electronics')
 const mobilesRoute=require('./routes/mobiles.js')
 const isAuthenticated = require('./middleware/authMiddleware'); 
 
 
 //models
-const Mobile = require('./models/Mobile');
-const Grocery = require('./models/Grocery');
-const Product = require('./models/Mobile')
+const Product = require('./models/Product')
 
 const app=express()
-
 
 
 app.use(express.static('public'))
@@ -56,7 +51,6 @@ const userSchema=new mongoose.Schema({
 })
 
 
-
 const secret="Thisispasswordsecret"
 userSchema.plugin(encrypt,{secret:secret,encryptedFields:['password']})
 userSchema.plugin(passportLocalMongoose)
@@ -84,7 +78,6 @@ app.get('/register',function(req,res){
 app.get('/login',function(req,res){
     res.render('login')
 })
-
 
 
 app.post('/register',function(req,res){    
@@ -126,10 +119,9 @@ app.get('/logout',(req,res)=>{
 
 
 //use routes
-app.use('/groceries',groceriesRoute)
-app.use('/electronics',electronicsRoute)
-app.use('/mobiles',mobilesRoute)
 
+app.use('/mobiles',mobilesRoute)
+// app.use('/cart',cartRoute)
 
 app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) => {
     const productId = req.params.productId;
@@ -139,7 +131,6 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
             res.status(404).send("Product nit found!")
         }
         console.log("email details:", req)
-
         User.findOne({username:req.user.username})
         .then((user)=>{
             if(!user){
@@ -149,14 +140,12 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
             const existingCartItem = user.cart.find(function (item) {
                 return item.productId === productId;
             })
-
             if(existingCartItem){
                 existingCartItem.quantity++
             }
             else{
                 user.cart.push({productId, quantity:1})
             }
-
             user.save()
             .then(()=>{
                 console.log("Item added to cart")
@@ -180,7 +169,6 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
             console.log(err)
             res.status(404).send("stock updation failed")
         })
-
     })
     .catch((err)=>{
         console.log(err)
@@ -191,27 +179,19 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
 app.get('/cart',isAuthenticated,(req,res)=>{
     User.findOne({username:req.user.username})
     .then((data)=>{
-        console.log("IVN",data.cart)
+
         const productIdsInCart = data.cart.map(item => item.productId);
         const quantity=data.cart.map(product=>product.quantity)
-        Mobile.find({productId: {$in: productIdsInCart}})
+        Product.find({productId: {$in: productIdsInCart}})
         .then((productData)=>{
-            console.log("ivn",productData)
-            // const productsPrice=productData.productPrice.map(item=>item.productPrice)
-            // let total=0
-            // productData.forEach((price)=>{
-            //     total+=price
-            // })
             let total=0
             productData.forEach((item)=>{
                 data.cart.forEach((id)=>{
                     if (id.productId===item.productId){
                         total+=item.productPrice*id.quantity
-
                     }
                 })
             })
-        
             res.render('cart',{
                 cartData:productData,
                 showSideNav:true,
@@ -220,15 +200,66 @@ app.get('/cart',isAuthenticated,(req,res)=>{
                 totalItems:data.cart.length,
                 totalCost:total
             })
-        })
-        
+        })   
     })
     .catch((err)=>{
         console.log(err)
     })
-    
 })
+
+app.post('/update-item-quantity/:productId/:quantity', isAuthenticated, (req, res) => {
+    const productId = req.params.productId;
+    const newQuantity = parseInt(req.params.quantity);
+
+    User.findOne({username:req.user.username})
+    .then((user)=>{
+        const existingCartItem = user.cart.find(function (item) {
+            return item.productId === productId;
+        })
+        if(existingCartItem){
+            existingCartItem.quantity=newQuantity
+        }
+        user.save()
+        .then(()=>{
+            console.log("qunatity updated successfull")
+
+        })
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+
+});
+
+
+
 
 app.listen(3000,()=>{
     console.log("Server is on 3000")
 })
+
+
+
+
+
+
+
+
+
+
+
+// Product.findOne({ productId:productId })
+//         .then(product => {
+//             if (!product) {
+//                 return res.send('Product not found');
+//             }
+//             const quantityDifference = newQuantity - product.productStock;
+
+//             if (quantityDifference > 0 && quantityDifference <= product.productStock) {
+//                 product.productStock -= quantityDifference;
+//                 product.save();
+//             }
+//         })
+//         .catch((err)=>{
+//             console.log(err)
+//         })

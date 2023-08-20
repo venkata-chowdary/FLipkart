@@ -101,6 +101,7 @@ html{
     border-radius: 50%;
     border: 1px solid var(--border-grey);
     background-color: #fff;
+    cursor: pointer;
 }
 
 .checkout{
