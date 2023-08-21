@@ -9,14 +9,14 @@ const encrypt=require('mongoose-encryption')
 
 //routes
 const mobilesRoute=require('./routes/mobiles.js')
-const isAuthenticated = require('./middleware/authMiddleware'); 
+const profileRoute=require('./routes/profile.js')
 
+const isAuthenticated = require('./middleware/authMiddleware'); 
 
 //models
 const Product = require('./models/Product')
 
 const app=express()
-
 
 app.use(express.static('public'))
 app.set('view engine','ejs')
@@ -121,7 +121,8 @@ app.get('/logout',(req,res)=>{
 //use routes
 
 app.use('/mobiles',mobilesRoute)
-// app.use('/cart',cartRoute)
+app.use('/profile',profileRoute)
+
 
 app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) => {
     const productId = req.params.productId;
@@ -130,7 +131,7 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
         if(!product){
             res.status(404).send("Product nit found!")
         }
-        console.log("email details:", req)
+        // console.log("email details:", req)
         User.findOne({username:req.user.username})
         .then((user)=>{
             if(!user){
@@ -149,7 +150,7 @@ app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) =
             user.save()
             .then(()=>{
                 console.log("Item added to cart")
-                res.redirect('/') //render cart
+                res.redirect('/cart') //render cart
             })
             .catch((err)=>{
                 console.log("error occured while adding item to cart")
@@ -208,28 +209,90 @@ app.get('/cart',isAuthenticated,(req,res)=>{
 })
 
 app.post('/update-item-quantity/:productId/:quantity', isAuthenticated, (req, res) => {
-    const productId = req.params.productId;
+
+    const productid = req.params.productId;
     const newQuantity = parseInt(req.params.quantity);
+    let oldQunatity=0;
 
     User.findOne({username:req.user.username})
     .then((user)=>{
-        const existingCartItem = user.cart.find(function (item) {
-            return item.productId === productId;
-        })
-        if(existingCartItem){
-            existingCartItem.quantity=newQuantity
+        const cartItem = user.cart.find(item => item.productId.toString() === productid);
+        if (!cartItem) {
+            return res.status(404).send({ message: 'Cart item not found' });
         }
+        oldQunatity=cartItem.quantity
+        console.log(oldQunatity)
+
+        cartItem.quantity=newQuantity
+        console.log(cartItem.quantity)
+
         user.save()
         .then(()=>{
-            console.log("qunatity updated successfull")
+            console.log("cart data updated")
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
 
+        Product.findOne({productId:productid})
+        .then((productData)=>{
+            if(oldQunatity>newQuantity){
+                productData.productStock++
+            }
+            if(oldQunatity<newQuantity){
+                productData.productStock--
+            }
+            productData.save()
+            .then(()=>{
+                console.log("product stock updated")
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
         })
     })
     .catch((err)=>{
         console.log(err)
     })
-
 });
+
+app.get('/placeorder',isAuthenticated,(req,res)=>{
+    
+
+    User.findOne({username:req.user.username})
+    .then((data)=>{
+        console.log(data)
+
+        if(data.cart.length==0){
+            return res.redirect('/cart')
+        }
+        while(data.cart.length){
+            data.cart.pop()
+        }
+
+        data.save()
+        .then(()=>{
+            console.log("cleared cart")
+            res.render('placeorder',{
+                showSideNav:false,
+                cartCount:data.cart.length,
+                totalItems:0,
+                totalCost:0
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+        
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+    
+})
 
 
 
@@ -237,9 +300,6 @@ app.post('/update-item-quantity/:productId/:quantity', isAuthenticated, (req, re
 app.listen(3000,()=>{
     console.log("Server is on 3000")
 })
-
-
-
 
 
 

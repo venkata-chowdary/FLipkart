@@ -1,0 +1,26 @@
+<%- include('header')  %>
+
+<div class="place-order">
+    <i class="check-mark fa-solid fa-circle-check" id="check"></i>
+    <i class="loading fa-solid fa-spinner" id="loading"></i>
+    <h2 id="order-status">Order Placed...</h2>
+</div>
+<%- include('footer')  %>
+
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+
+        const check=document.querySelector('#check')
+        const loading=document.querySelector('#loading')
+        const orderStatus=document.querySelector('#order-status')
+        setTimeout(()=>{
+            check.style.display = 'block';
+            loading.style.display = 'none';
+            orderStatus.innerHTML="Order Confirmed..."
+        },2000)
+
+        
+    })
+
+</script>
+<%- include('lastfooter')  %>
