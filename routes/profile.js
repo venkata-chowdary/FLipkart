@@ -7,7 +7,8 @@ route.get('/',isAuthenticated,(req,res)=>{
     let count=req.cartCount
     res.render('profile',{
         showSideNav:true,
-        cartCount:count          
+        cartCount:count,
+        profileData:req.user,        
     })
 })
 

@@ -1,0 +1,35 @@
+<%- include('header')  %>
+<div class="profile-section">
+    <div class="profile-photo">
+        <i class="fa-solid fa-circle-user"></i>        
+    </div>
+    <div class="profile-details">
+        <h3>Venkata Chowdary</h3>
+        <p><%= profileData.username  %></p>
+        <p>Items purchased : <span><%= profileData.__v  %></span></p>
+    </div>
+    <!-- <div class="profile-orders">
+        <div class="order">
+            <div class="order-details">
+                <a href="/mobiles/1">
+                    <div class="order-image">
+                        <img src="https://m.media-amazon.com/images/I/81-nNnxa6VS.jpg">
+                    </div>
+                </a>
+                <div class="order-description">
+                    <h3>Samsung A21</h3>
+                    <h4>Orderd Stock: 2</h4>
+                    <h4>129999</h4>
+                </div>
+            </div>
+            <div>
+                <a href="/">Return</a>
+                <a href="/">Review Order</a>
+            </div>
+        </div>
+    </div> -->
+
+</div>
+
+<%- include('footer')  %>
+<%- include('lastfooter')  %>

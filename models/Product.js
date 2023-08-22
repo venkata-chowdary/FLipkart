@@ -8,6 +8,7 @@ const mobileSchema=new mongoose.Schema({
     productPrice:Number,
     productStock:Number,
     productCategory:String,
+    productCategory2:String,
     productDescription:String,
     productImageUrl:String,
     wishlisted:Boolean

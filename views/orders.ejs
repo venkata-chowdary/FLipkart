@@ -1,0 +1,25 @@
+<%- include('header')  %>
+<h2 class="order-section-title">Orders History</h2>
+
+<div class="orders">
+    <% ordersData.forEach((order,i)=>{ %>
+        <a href="/<%= order.productCategory2  %>/<%= order.productId  %>">
+            <div class="order">
+                <div class="order-image">
+                    <img src="<%= order.productImageUrl  %>">
+                </div>
+                <div class="order-details">
+                    <h3><%= order.productName %></h3>
+                    <p>Ordered Stock :<span><%= orderedQuantity[i] %> </span></p>
+                    <p><%= orderedQuantity[i]*(order.productPrice)  %></p>
+                </div>
+            </div>
+        </a>
+    <% }) %>
+    
+    
+</div>
+
+
+<%- include('footer')  %>
+<%- include('lastfooter')  %>

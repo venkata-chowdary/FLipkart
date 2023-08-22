@@ -12,6 +12,8 @@
     --font-green:rgb(21 128 61);
     --font-grey:rgb(107 114 128);
     --background-grey:#f1f3f6;
+    --border-grey:#c2c2c2;
+
 }
 
 html{
@@ -213,7 +215,7 @@ input:focus{
     gap:70px 20px;
     justify-content: space-between;
 }
-.product-section-title{
+.product-section-title,.order-section-title{
     margin-bottom: 28px;
 }
 .product{
@@ -232,7 +234,6 @@ input:focus{
     box-shadow: 0;
 
 }
-
 .product a{
     text-decoration: none;
     color: #000;
@@ -244,7 +245,6 @@ input:focus{
     overflow: hidden;
 
 }
-
 
 .product-image img{
     width: 100%;

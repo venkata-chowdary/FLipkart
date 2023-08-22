@@ -1,4 +1,37 @@
 <%- include('header') %>
+<h2 class="product-section-title">Groceries</h2>
+<div class="products">
+    <% groceryData.forEach((grocery) => { %>
+        <div class="product">
+            <a href="/<%= grocery.productCategory2  %>/<%= grocery.productId %>">
+                <div class="product-image">
+                    <img src="<%= grocery.productImageUrl %>">
+                </div>
+                <div class="product-details">
+                    <h3><%= grocery.productName %></h3>
+                    <h4><%= grocery.productCompany %></h4>
+                    <p>
+                        <% for (let i = 0; i < grocery.productRating; i++) { %>
+                            <i class="fa-solid fa-star"></i>
+                        <% } %>
+                    </p>
+                    <p><%= grocery.productStock  %></p>
+                    <div>
+                        <h5 class="org-price">₹<%= grocery.productPrice %></h5>
+                        <h5 class="offer-price">₹<%= Math.ceil(grocery.productPrice/1000)*1000 %></h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        
+    <% }) %>
+    <div class="dummy-pro"></div>
+    <div class="dummy-pro"></div>
+</div>
+
 
 
 <%- include('footer') %>
+
+<%- include('lastfooter')  %>

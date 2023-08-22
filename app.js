@@ -9,6 +9,7 @@ const encrypt=require('mongoose-encryption')
 
 //routes
 const mobilesRoute=require('./routes/mobiles.js')
+const groceryRoute=require('./routes/groceries.js')
 const profileRoute=require('./routes/profile.js')
 
 const isAuthenticated = require('./middleware/authMiddleware'); 
@@ -47,7 +48,8 @@ const userSchema=new mongoose.Schema({
     username:String,
     email:String,
     password:String,
-    cart: [cartItemSchema]
+    cart: [cartItemSchema],
+    orders:[cartItemSchema]
 })
 
 
@@ -121,8 +123,8 @@ app.get('/logout',(req,res)=>{
 //use routes
 
 app.use('/mobiles',mobilesRoute)
+app.use('/groceries',groceryRoute)
 app.use('/profile',profileRoute)
-
 
 app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) => {
     const productId = req.params.productId;
@@ -269,7 +271,11 @@ app.get('/placeorder',isAuthenticated,(req,res)=>{
         if(data.cart.length==0){
             return res.redirect('/cart')
         }
+        
         while(data.cart.length){
+            let lastElemenet=data.cart[data.cart.length-1]
+            console.log(lastElemenet)
+            data.orders.push(lastElemenet)
             data.cart.pop()
         }
 
@@ -293,6 +299,37 @@ app.get('/placeorder',isAuthenticated,(req,res)=>{
     })
     
 })
+
+//order
+
+app.get('/orders',isAuthenticated,(req,res)=>{
+    let count=req.cartCount
+    User.findOne({username:req.user.username})
+    .then((userData)=>{
+
+        const orderedProducts = userData.orders.map(item => item.productId);
+        const quantity=userData.orders.map(product=>product.quantity)
+
+        Product.find({productId: {$in: orderedProducts}})
+        .then((productData)=>{
+            console.log(productData)
+            console.log(quantity)
+            res.render('orders',{
+                showSideNav :true,
+                cartCount:count,
+                ordersData:productData,
+                orderedQuantity:quantity
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+        
+    })
+    
+})
+
 
 
 

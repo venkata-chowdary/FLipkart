@@ -1,22 +1,37 @@
-const express = require('express');
-const router = express.Router();
-const isAuthenticated = require('../middleware/authMiddleware'); // Example middleware for authentication
+const express=require('express')
+const route=express.Router()
 
+const isAuthenticated = require('../middleware/authMiddleware');
 
+const Product = require('../models/Product'); 
 
-router.get('/',isAuthenticated,(req,res)=>{
-    res.render('grocery',{
-        showSideNav:true
+route.get('/',isAuthenticated,(req,res)=>{
+    let count=req.cartCount
+    Product.find({productCategory:"Grocery"})
+    .then((data)=>{
+        res.render('grocery',{
+            groceryData:data,
+            showSideNav:true,
+            cartCount:count
+        }) 
+    })
+    .catch((err)=>{
+        console.log(err)
     })
 })
 
+route.get('/:productId',isAuthenticated,(req,res)=>{
+    Product.find({productId:req.params.productId,productCategory:"Grocery"})
+    .then((data)=>{
+        res.render('product',{
+            showSideNav:false,
+            product:data,
+            cartCount:req.cartCount
+        })
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
 
-
-
-
-
-
-
-
-
-module.exports=router
+module.exports=route

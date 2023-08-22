@@ -3,7 +3,7 @@
     <div class="cart-items">
         <% cartData.forEach((item,i)=>{ %>
                 <div class="cart-item">
-                    <a href="/mobiles/<%= item.productId %>">
+                    <a href="/<%= item.productCategory2  %>/<%= item.productId %>">
                         <div class="cart-item-image">
                             <img src="<%= item.productImageUrl %>">
                         </div>
