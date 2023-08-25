@@ -28,9 +28,10 @@
                 <img src="/logo.png">
             </a>
         </div>
-        <form class="search-bar" method="post" accept="/">
-            <input type="text" name="searchQuery" placeholder="Search Product...">
+        <form class="search-bar" method="get" action="/searchProduct">
+            <input type="text" name="productName" placeholder="Search Product...">
             <button type="submit">
+
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>

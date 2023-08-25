@@ -11,6 +11,7 @@ const encrypt=require('mongoose-encryption')
 const mobilesRoute=require('./routes/mobiles.js')
 const groceryRoute=require('./routes/groceries.js')
 const profileRoute=require('./routes/profile.js')
+const clothingRoute=require('./routes/clothing.js')
 
 const isAuthenticated = require('./middleware/authMiddleware'); 
 
@@ -46,7 +47,7 @@ const cartItemSchema = new mongoose.Schema({
 
 const userSchema=new mongoose.Schema({
     username:String,
-    email:String,
+    firstname:String,
     password:String,
     cart: [cartItemSchema],
     orders:[cartItemSchema]
@@ -66,11 +67,19 @@ passport.deserializeUser(User.deserializeUser())
 
 app.get('/',isAuthenticated,(req,res)=>{
     let count=req.cartCount
-
-    res.render('home',{
-        showSideNav:true,
-        cartCount:count          
+    User.findOne({username:req.user.username})
+    .then((data)=>{
+        console.log(data)
+        res.render('home',{
+            showSideNav:true,
+            cartCount:count ,
+            username:data.firstname    
+        })
     })
+    .catch((err)=>{
+        console.log(err)
+    })
+    
 })
 
 app.get('/register',function(req,res){
@@ -83,7 +92,7 @@ app.get('/login',function(req,res){
 
 
 app.post('/register',function(req,res){    
-    User.register({username:req.body.username},req.body.password, function(err,user){
+    User.register({username:req.body.username,firstname:req.body.firstname},req.body.password, function(err,user){
         if(err){
             console.log(err)
             res.redirect('/register')
@@ -114,17 +123,36 @@ app.post('/login',function(req,res){
     })
 })
 
-app.get('/logout',(req,res)=>{
-    req.logout()
-    res.redirect('/')
-})
+app.get('/logout', function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/login');
+    });
+  });
 
+app.get('/searchProduct',isAuthenticated,(req,res)=>{
+    const productName=req.query.productName
+
+    let count=req.cartCount
+    Product.find({productName:productName})
+    .then((data)=>{
+        res.render('product',{
+            product:data,
+            showSideNav:true,
+            cartCount:count
+        }) 
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
 
 //use routes
 
 app.use('/mobiles',mobilesRoute)
 app.use('/groceries',groceryRoute)
 app.use('/profile',profileRoute)
+app.use('/clothing',clothingRoute)
 
 app.get('/add-to-cart/:collectionName/:productId', isAuthenticated, (req, res) => {
     const productId = req.params.productId;
@@ -266,8 +294,6 @@ app.get('/placeorder',isAuthenticated,(req,res)=>{
 
     User.findOne({username:req.user.username})
     .then((data)=>{
-        console.log(data)
-
         if(data.cart.length==0){
             return res.redirect('/cart')
         }
@@ -337,13 +363,6 @@ app.get('/orders',isAuthenticated,(req,res)=>{
 app.listen(3000,()=>{
     console.log("Server is on 3000")
 })
-
-
-
-
-
-
-
 
 // Product.findOne({ productId:productId })
 //         .then(product => {

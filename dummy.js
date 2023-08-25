@@ -1,4 +1,3 @@
-const Product = require("./models/Mobile");
 
 const smartphoneDataInINR = [
     // Apple
@@ -484,6 +483,136 @@ const smartphoneDataInINR = [
         productDescription: 'Maggi: Instant noodles with savory flavors. Quick, convenient meal. Loved globally for its taste and simplicity.',
         productImageUrl: 'https://5.imimg.com/data5/SELLER/Default/2022/7/MU/PJ/SD/5742893/maggi-noodles.jpg',
         wishlisted: false
+    },
+    {
+      productId: '37',
+      productName: 'Check Shirt',
+      productCompany: 'Peter England',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 1249,
+      productStock: 50,
+      productCategory: 'Clothing',
+      productCategory2: 'Shirts',
+      productDescription: "Absolutely love the Peter England check shirt! The fabric feels premium and comfortable. The colors are vibrant and the fit is perfect. It's my new favorite for casual outings.",
+      productImageUrl: 'https://m.media-amazon.com/images/I/715Nhs5c5rL._UY879_.jpg',
+      wishlisted: false
+    },
+    {
+      productId: '38',
+      productName: 'Slim Fit Jeans',
+      productCompany: 'Levi\'s',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 1999,
+      productStock: 30,
+      productCategory: 'Clothing',
+      productCategory2: 'Jeans',
+      productDescription: "Levi's slim fit jeans are a classic choice for a modern look. The fit is fantastic and the quality is exceptional. A must-have in every wardrobe.",
+      productImageUrl: 'https://www.levi.in/dw/image/v2/BBRC_PRD/on/demandware.static/-/Sites-LeviMaster-Catalog/en_IN/dwcd6255fb/images/hi-res/182981263/182981263_1_Front.jpg',
+      wishlisted: true
+    },
+    {
+      productId: '39',
+      productName: 'Cotton T-Shirt',
+      productCompany: 'Allen Solly',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 799,
+      productStock: 20,
+      productCategory: 'Clothing',
+      productCategory2: 'T-Shirts',
+      productDescription: "Allen Solly's cotton t-shirt offers unmatched comfort and style. The fabric is soft, and the colors stay vibrant even after multiple washes.",
+      productImageUrl: 'https://imagescdn.allensolly.com/img/app/product/4/442585-9726315.jpg',
+      wishlisted: false
+    },
+    {
+      productId: '40',
+      productName: 'Formal Shirt',
+      productCompany: 'Van Heusen',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 1499,
+      productStock: 40,
+      productCategory: 'Clothing',
+      productCategory2: 'Shirts',
+      productDescription: "Van Heusen's formal shirt is perfect for business meetings or any formal occasion. The fit and design exude professionalism and elegance.",
+      productImageUrl: 'https://m.media-amazon.com/images/I/81eT5MTvg5L._UX569_.jpg',
+      wishlisted: true
+    },
+    {
+      productId: '41',
+      productName: 'Ripped Jeans',
+      productCompany: 'Killer',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 1699,
+      productStock: 25,
+      productCategory: 'Clothing',
+      productCategory2: 'Jeans',
+      productDescription: "Killer's ripped jeans offer a trendy and edgy look. The distressed design adds a touch of uniqueness to your outfit.",
+      productImageUrl: 'https://www.urbanofashion.com/cdn/shop/products/avdisheavywhsk-lblu_1.jpg',
+      wishlisted: false
+    },
+    {
+      productId: '42',
+      productName: 'Graphic Print T-Shirt',
+      productCompany: 'Wrogn',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 599,
+      productStock: 35,
+      productCategory: 'Clothing',
+      productCategory2: 'T-Shirts',
+      productDescription: "Wrogn's graphic print t-shirt is all about expressing your style. The cool designs make a bold statement wherever you go.",
+      productImageUrl: 'https://usplworld-static.s3.ap-south-1.amazonaws.com/static/img/wrogn/products/product_detail_zoom/WMTS1073/1.jpeg',
+      wishlisted: true
+    },
+    {
+      productId: '43',
+      productName: 'Casual Shirt',
+      productCompany: 'US Polo Assn',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 1299,
+      productStock: 30,
+      productCategory: 'Clothing',
+      productCategory2: 'Shirts',
+      productDescription: "US Polo Assn's casual shirt offers comfort and style combined. The brand's signature logo adds a touch of authenticity.",
+      productImageUrl: 'https://cdn03.nnnow.com/web-images/large/styles/MJMBUPRLB2Z/1618547652416/1.jpg',
+      wishlisted: false
+    },
+    {
+      productId: '44',
+      productName: 'Slim Stretch Jeans',
+      productCompany: 'Wrangler',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 2199,
+      productStock: 20,
+      productCategory: 'Clothing',
+      productCategory2: 'Jeans',
+      productDescription: "Wrangler's slim stretch jeans offer comfort and style that moves with you. The stretch fabric ensures a great fit.",
+      productImageUrl: 'https://m.media-amazon.com/images/I/71aHgC3kHDL._UY879_.jpg',
+      wishlisted: true
+    },
+    {
+      productId: '45',
+      productName: 'Printed T-Shirt',
+      productCompany: 'Puma',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 699,
+      productStock: 40,
+      productCategory: 'Clothing',
+      productCategory2: 'T-Shirts',
+      productDescription: "Puma's printed t-shirt combines sporty vibes with a trendy design. Perfect for an active lifestyle.",
+      productImageUrl: 'https://assets.ajio.com/medias/sys_master/root/hfc/h2b/9898027745310/-1117Wx1400H-460062906-black-MODEL.jpg',
+      wishlisted: false
+    },
+    {
+      productId: '46',
+      productName: 'Floral Shirt',
+      productCompany: 'Arrow',
+      productRating: Math.random() * 5 + 1,
+      productPrice: 1599,
+      productStock: 25,
+      productCategory: 'Clothing',
+      productCategory2: 'Shirts',
+      productDescription: "Arrow's formal check shirt offers a sophisticated look for professional settings. The classic pattern never goes out of style.",
+      productImageUrl: 'https://thehouseofrare.com/cdn/shop/files/hero_0f40441a-3d01-4122-a796-e4db16809514_765x.jpg',
+      wishlisted: true
     }
 ]
 
@@ -498,48 +627,3 @@ const smartphoneDataInINR = [
     .catch((err) => {
       console.error('Error inserting smartphone data:', err);
     });
-  
-
-    // Product.findOne({ productId:productId })
-    // .then((product) => {
-    //     if (!product) {
-    //         res.status(404).send("Product not found!");
-    //     }
-    //     product.productStock-=1
-    //     product.save()
-    //     .catch((err)=>{
-    //         console.log(err)
-    //     })
-    //     User.findOne({ email: req.user.email })
-    //         .then((user) => {
-    //             if (!user) {
-    //                 res.status(404).send("User not found!");
-    //             }
-                
-    //             const existingCartItem = user.cart.find(function (item) {
-    //                 return item.productId === productId;
-    //             })
-
-    //             if (existingCartItem) {
-    //                 existingCartItem.quantity+=1;
-    //             } else {
-    //                 user.cart.push({ productId, quantity: 1 })
-    //             }
-
-    //             user.save()
-    //             .then((saveErr) => {
-    //                 res.send('Item added to cart.')
-    //             })
-    //             .catch((err)=>{
-    //                 console.log(err)
-    //             })
-    //         })
-    //         .catch((err) => {
-    //             console.error(err)
-    //             res.status(404).send("An error occurred while fetching user.")
-    //         });
-    // })
-    // .catch((err) => {
-    //     console.error(err)
-    //     res.status(404).send("An error occurred while fetching product.")
-    // })

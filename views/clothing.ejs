@@ -1,0 +1,35 @@
+<%- include('header') %>
+<h2 class="product-section-title">Fashion Store</h2>
+<div class="products">
+    <% clothingData.forEach((item) => { %>
+        <div class="product">
+            <a href="/<%= item.productCategory2  %>/<%= item.productId %>">
+                <div class="product-image">
+                    <img src="<%= item.productImageUrl %>">
+                </div>
+                <div class="product-details">
+                    <h3><%= item.productName %></h3>
+                    <h4><%= item.productCompany %></h4>
+                    <p>
+                        <% for (let i = 0; i < item.productRating; i++) { %>
+                            <i class="fa-solid fa-star"></i>
+                        <% } %>
+                    </p>
+                    <p><%= item.productStock  %></p>
+                    <div>
+                        <h5 class="org-price">₹ <%= item.productPrice %></h5>
+                        <h5 class="offer-price">₹ <%= Math.ceil(item.productPrice/100)*100 %></h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        
+    <% }) %>
+</div>
+
+
+
+<%- include('footer') %>
+
+<%- include('lastfooter')  %>

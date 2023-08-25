@@ -1,0 +1,144 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;}
+:root{
+    --primary-blue:#047BD5;
+    --primary-yellow:#F8E831;
+    --secondary-blue:#4FA2E1;
+    --primary-orange:#F7A200;
+    --primary-orange-2:#ffb933;
+
+    --secondary-orange:#fb641b;
+    --tertiary-orange:#fb712e;
+
+    --font-black: rgb(17 24 39);
+    --font-green:rgb(21 128 61);
+    --font-grey:rgb(107 114 128);
+    --background-grey:#f1f3f6;
+    --border-grey:#c2c2c2;
+
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 70vh;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+}
+
+
+.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--primary-blue);
+    height: 100%;
+    padding: 50px 30px 30px;
+    max-width: 50%;
+    color: #fff;
+}
+
+.description div{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.description h2{
+    font-weight: 600;
+}
+
+.description p{
+    width: 80%;
+}
+
+.form-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    gap: 20px;
+    padding: 30px;
+    height: 100%;
+    min-width: 50%;
+    border: 1px solid var(--border-grey);
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+form input{
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-grey);
+    border-radius: 18px;
+    font-size: 14px;
+}
+
+form input:focus{
+    outline: 0;
+}
+
+form button{
+    width: 100%;
+    background-color: var(--secondary-orange);
+    border: 0;
+    border-radius: 18px;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+form button:hover{
+    transition: 0.2s ease all;
+    background-color: var(--tertiary-orange);
+}
+form div{
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+form p{
+    font-size: 12px;
+    color: var(--font-grey);
+}
+
+form p span{
+    color: var(--primary-blue);
+}
+
+form div{
+    width: 100%;
+}
+.form-section .register-section p{
+    width: 100%;
+    text-decoration: none;
+    font-size:14px;
+    font-weight: 500;
+}
+
+.form-section a{
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-weight: 500;
+}

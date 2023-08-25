@@ -17,8 +17,8 @@
                     </p>
                     <p><%= grocery.productStock  %></p>
                     <div>
-                        <h5 class="org-price">₹<%= grocery.productPrice %></h5>
-                        <h5 class="offer-price">₹<%= Math.ceil(grocery.productPrice/1000)*1000 %></h5>
+                        <h5 class="org-price">₹ <%= grocery.productPrice %></h5>
+                        <h5 class="offer-price">₹ <%= Math.ceil(grocery.productPrice/100)*100 %></h5>
                     </div>
                 </div>
             </a>

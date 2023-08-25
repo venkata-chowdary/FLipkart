@@ -8,6 +8,11 @@
     --primary-yellow:#F8E831;
     --secondary-blue:#4FA2E1;
     --primary-orange:#F7A200;
+    --primary-orange-2:#ffb933;
+
+    --secondary-orange:#fb641b;
+    --tertiary-orange:#fb712e;
+
     --font-black: rgb(17 24 39);
     --font-green:rgb(21 128 61);
     --font-grey:rgb(107 114 128);
@@ -23,8 +28,8 @@ html{
 .orders{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    gap:  30px 30px;
+    justify-content: flex-start;
+    gap:  20px 20px;
     flex-direction: row;
     flex-wrap:wrap;
 }
@@ -39,22 +44,19 @@ html{
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
-    min-width: 300px;
+    min-width: 370px;
+    max-width: 370px;
     margin: 0 auto;
     padding: 10px 30px;
     border: 1px solid var(--border-grey);
 }
 
-.order-details{
-    display: flex;
-    gap: 4px;
-    flex-direction: column;
-}
 
 .order-details{
     display: flex;
     gap: 6px;
     flex-direction: column;
+    width: fit-content;
 }
 
 .order-details h3{

@@ -8,6 +8,9 @@
     --primary-yellow:#F8E831;
     --secondary-blue:#4FA2E1;
     --primary-orange:#F7A200;
+    --primary-orange-2:#ffb933;
+    --secondary-orange:#fb641b;
+    --tertiary-orange:#fb712e;
     --font-black: rgb(17 24 39);
     --font-green:rgb(21 128 61);
     --font-grey:rgb(107 114 128);
@@ -149,7 +152,7 @@ input:focus{
     margin-top: 50px;
     width: fit-content;
     position: fixed;
-    height: 93vh;
+    height: 95vh;
     background-color: var(--primary-blue);
     padding: 12px 14px;
 
@@ -212,8 +215,8 @@ input:focus{
 .products{
     display: flex;
     flex-wrap: wrap;
-    gap:70px 20px;
-    justify-content: space-between;
+    gap: 80px 86px;
+    justify-content: flex-start;
 }
 .product-section-title,.order-section-title{
     margin-bottom: 28px;
@@ -313,7 +316,7 @@ input:focus{
     color: var(--primary-blue);
     font-size: 18px;
     font-weight: 500;
-    left: -20px;
+    left: -50px;
     position: absolute;
     display: flex;
     align-items: center;
