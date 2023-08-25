@@ -11,11 +11,12 @@
                     <h3><%= item.productName %></h3>
                     <h4><%= item.productCompany %></h4>
                     <p>
+                        <%= Math.floor(item.productRating)  %>
                         <% for (let i = 0; i < item.productRating; i++) { %>
                             <i class="fa-solid fa-star"></i>
                         <% } %>
                     </p>
-                    <p><%= item.productStock  %></p>
+                    <!-- <p><%= item.productStock  %></p> -->
                     <div>
                         <h5 class="org-price">₹ <%= item.productPrice %></h5>
                         <h5 class="offer-price">₹ <%= Math.ceil(item.productPrice/100)*100 %></h5>

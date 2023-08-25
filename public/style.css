@@ -283,6 +283,7 @@ input:focus{
 .product-details p{
     font-size: 16px;
     font-weight: 500;
+    margin: 6px 0 0;
 }
 
 .product-details i{

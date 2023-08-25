@@ -11,11 +11,13 @@
                     <h3><%= grocery.productName %></h3>
                     <h4><%= grocery.productCompany %></h4>
                     <p>
+                        <%= grocery.productRating  %>
+
                         <% for (let i = 0; i < grocery.productRating; i++) { %>
                             <i class="fa-solid fa-star"></i>
                         <% } %>
                     </p>
-                    <p><%= grocery.productStock  %></p>
+                    <!-- <p><%= grocery.productStock  %></p> -->
                     <div>
                         <h5 class="org-price">₹ <%= grocery.productPrice %></h5>
                         <h5 class="offer-price">₹ <%= Math.ceil(grocery.productPrice/100)*100 %></h5>

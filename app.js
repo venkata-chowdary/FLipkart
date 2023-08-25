@@ -128,7 +128,8 @@ app.get('/logout', function(req, res, next){
       if (err) { return next(err); }
       res.redirect('/login');
     });
-  });
+});
+
 
 app.get('/searchProduct',isAuthenticated,(req,res)=>{
     const productName=req.query.productName

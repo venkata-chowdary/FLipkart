@@ -12,7 +12,4 @@ route.get('/',isAuthenticated,(req,res)=>{
     })
 })
 
-
-
-
 module.exports=route

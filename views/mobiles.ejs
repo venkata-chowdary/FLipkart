@@ -33,11 +33,12 @@
                     <h3><%= mobile.productName %></h3>
                     <h4><%= mobile.productCompany %></h4>
                     <p>
+                        <%= mobile.productRating  %>
                         <% for (let i = 0; i < mobile.productRating; i++) { %>
                             <i class="fa-solid fa-star"></i>
                         <% } %>
                     </p>
-                    <p><%= mobile.productStock  %></p>
+                    <!-- <p><%= mobile.productStock  %></p> -->
                     <div>
                         <h5 class="org-price">₹ <%= mobile.productPrice %></h5>
                         <h5 class="offer-price">₹ <%= Math.ceil(mobile.productPrice/1000)*1000 %></h5>
